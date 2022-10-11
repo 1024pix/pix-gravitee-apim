@@ -2,7 +2,7 @@
 
 Ce dépot contient le code poussé sur Scalingo pour déployer l'instance de Gravitee APIM de Pix.
 
-Il utilise le [buildpack gravitee sur la branche pix][builpack-gravitee].
+Il utilise le [buildpack gravitee sur la branche pix][buildpack-gravitee].
 
 ## Usage
 
