@@ -6,7 +6,7 @@
     }
   },
   "aliases": {
-    "gravitee-request": {
+    "gravitee-log": {
       "is_write_index": true
     }
   }
