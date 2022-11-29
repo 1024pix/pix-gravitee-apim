@@ -9,8 +9,10 @@
         }
       },
       "delete" : {
-          "min_age" : "5m",
-          "actions" : { }
+        "min_age" : "5m",
+        "actions" : {
+          "delete": {}
+        }
       }
     }
   }

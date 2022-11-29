@@ -9,8 +9,10 @@
         }
       },
       "delete" : {
-          "min_age" : "365d",
-          "actions" : { }
+        "min_age" : "365d",
+        "actions" : {
+          "delete": {}
+        }
       }
     }
   }
