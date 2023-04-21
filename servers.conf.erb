@@ -1,0 +1,52 @@
+# x_gravitee_api_key is the name of header but dash convert to underscore
+map $http_x_pix_api_key $api_client_name {
+    default                                 "";    
+    <% ENV["API_KEYS"].split(';').each do |val| %>
+        "<%= val.split(':').last %>" "<%= val.split(':').first %>";
+    <% end %>
+}
+
+server {
+    server_name localhost;
+    listen <%= ENV['PORT'] %> default_server;
+    listen [::]:<%= ENV['PORT'] %> default_server;
+
+    #
+    # API key validation
+    #
+    location = /_validate_apikey {
+        internal;
+
+        if ($http_x_pix_api_key = "") {
+            return 401; # Unauthorized
+        }
+        if ($api_client_name = "") {
+            return 403; # Forbidden
+        }
+
+        return 204; # OK (no content)
+    }
+
+    #
+    # Token API
+    #
+    location /api/token {
+        proxy_pass https://<%= ENV["TARGET_HOST"] %>/api/application/token;    
+    }
+
+    #
+    # Pole Emploi API
+    #
+    location /pole-emploi {
+        auth_request /_validate_apikey;
+        proxy_pass https://<%= ENV["TARGET_HOST"] %>/api/pole-emploi;    
+    }
+
+    #
+    # LSU API
+    #
+    location /organizations {
+        auth_request /_validate_apikey;
+        proxy_pass https://<%= ENV["TARGET_HOST"] %>/api/organizations;
+    }
+}

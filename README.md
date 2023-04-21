@@ -1,11 +1,16 @@
 # Pix Gravitee APIM deployment
 
-Ce dépot contient le code poussé sur Scalingo pour déployer l'instance de Gravitee APIM de Pix.
+Ce dépot contient le code poussé sur Scalingo pour déployer l'instance APIM de Pix.
 
-Il utilise le [buildpack gravitee sur la branche pix][buildpack-gravitee].
+Il utilise le buildpack nginx de Scalingo.
 
-## Usage
+[buildpack-nginx]: https://github.com/Scalingo/nginx-buildpack
 
-⚠️ Pour déployer un module, il faut mettre la variable d'environnement `PROJECT_DIR` avec le nom du dossier a déployer. Pour les autres variables, voir la documentation du [buildpack][buildpack-gravitee].
+# Usage
 
-[buildpack-gravitee]: https://github.com/1024pix/gravitee-buildpack2/tree/pix
+Variables d'environement :
+ * Choisir la version de nginx `NGINX_VERSION=1.8.0`
+ * Définir le host cible `TARGET_HOST=api.recette.pix.fr`
+ * Application et API key `API_KEYS=toto:clef_1;titi:clef_2`
+
+Le fichier à configurer est le fichier `nginx.conf.erb`
